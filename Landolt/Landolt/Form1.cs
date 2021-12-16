@@ -11,24 +11,35 @@ namespace Landolt
 {
     public partial class Form1 : Form
     {
-        int rows = 12;
-        int cols = 12;
+        int rows = 20;
+        int cols = 20;
         int size = 1;
         int targetType = 0;
+        bool started = false;
 
-        List<List<UserControl1>> ctrls = new List<List<UserControl1>>();
+        List<List<UserControl1>> ctrls;
+
+        Timer timer = new Timer();
+        int seconds = 0;// время в секундах
+        int timeLeft = 0;
 
         Random rand = new Random();
         public Form1()
         {
             InitializeComponent();
-
-            SetMatrix();
+                        
             this.Height = button1.Location.Y + 150;            
         }
 
         void SetMatrix()
         {
+            panel1.Controls.Clear();
+
+            ctrls = new List<List<UserControl1>>();
+
+            rows = (int)numericUpDown1.Value;
+            cols = (int)numericUpDown1.Value;
+
             for (int i = 0; i < rows; ++i)
                 ctrls.Add(new List<UserControl1>());
 
@@ -56,20 +67,23 @@ namespace Landolt
             panel2.BackgroundImage = Image.FromFile("./Images/" + "_" + targetType.ToString() + ".png");
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        void Finish()
         {
+            timer.Stop();
+            started = false;
+            button1.Text = "Старт";
             // Проверка проходом по матрице
             for (int r = 0; r < rows; ++r)
             {
                 for (int c = 0; c < cols; ++c)
                 {
                     UserControl1 u = ctrls[r][c];
-                    if(u.Checked)
+                    if (u.Checked)
                     {
                         // неверно отмеченный
                         if (u.Type != targetType)
                             u.BackColor = Color.Red;
-                    }    
+                    }
                     else
                     {
                         // пропущенный
@@ -78,6 +92,40 @@ namespace Landolt
                     }
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if(!started)
+            {
+                SetMatrix();
+                seconds = ((int)numericUpDown2.Value) * 60;
+                timeLeft = seconds;
+                started = true;
+                button1.Text = "Завершить";
+                ShowTimeLeft(timeLeft);
+                timer.Interval = 1000;
+                timer.Tick += Timer_Tick;
+                timer.Start();
+            }
+            else
+            {
+                Finish();
+            }
+        }
+
+        void ShowTimeLeft(int timeLeft)
+        {
+            TimeSpan span = TimeSpan.FromSeconds(timeLeft);
+            label3.Text = string.Format("Осталось времени: {0:00}:{1:00}", span.Minutes, span.Seconds);
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            timeLeft -= 1;
+            ShowTimeLeft(timeLeft);
+            if(timeLeft == 0)
+                Finish();
         }
     }
 }
