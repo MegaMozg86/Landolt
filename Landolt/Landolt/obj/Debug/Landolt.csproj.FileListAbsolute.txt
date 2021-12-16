@@ -1,0 +1,10 @@
+C:\srcprojects\repos\Landolt\Landolt\Landolt\bin\Debug\Landolt.exe
+C:\srcprojects\repos\Landolt\Landolt\Landolt\bin\Debug\Landolt.pdb
+C:\srcprojects\repos\Landolt\Landolt\Landolt\obj\Debug\Landolt.csproj.AssemblyReference.cache
+C:\srcprojects\repos\Landolt\Landolt\Landolt\obj\Debug\Landolt.Form1.resources
+C:\srcprojects\repos\Landolt\Landolt\Landolt\obj\Debug\Landolt.Properties.Resources.resources
+C:\srcprojects\repos\Landolt\Landolt\Landolt\obj\Debug\Landolt.UserControl1.resources
+C:\srcprojects\repos\Landolt\Landolt\Landolt\obj\Debug\Landolt.csproj.GenerateResource.cache
+C:\srcprojects\repos\Landolt\Landolt\Landolt\obj\Debug\Landolt.csproj.CoreCompileInputs.cache
+C:\srcprojects\repos\Landolt\Landolt\Landolt\obj\Debug\Landolt.exe
+C:\srcprojects\repos\Landolt\Landolt\Landolt\obj\Debug\Landolt.pdb
