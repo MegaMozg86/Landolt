@@ -90,11 +90,11 @@ namespace Landolt
                     if (u.Checked)
                     {
                         report.M++;
+                        report.N = count;
+                        report.C = r + 1;
                         if (u.Type == targetType)
                         {
                             report.S++;
-                            report.N = count;
-                            report.C = r + 1;
                         }
                         // неверно отмеченный
                         if (u.Type != targetType)
@@ -204,7 +204,7 @@ namespace Landolt
                 if (r == DialogResult.OK)
                 {
                     string content = string.Format("{0} {1} {2} {3}",
-                    textBox1.Text, textBox2.Text, textBox3.Text, DateTime.Now.ToString("dd-MM-yyyy-HH-mm"));
+                    textBox1.Text, textBox2.Text, textBox3.Text, DateTime.Now.ToString("dd-MM-yyyy HH:mm"));
                     content += Environment.NewLine;
                     content += report.ToString();
                     File.WriteAllText(dialog.FileName, content);
